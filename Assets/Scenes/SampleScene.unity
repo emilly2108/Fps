@@ -9993,7 +9993,7 @@ Transform:
   m_GameObject: {fileID: 345573556}
   m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: -3, y: 0.39999992, z: 0.39999342}
-  m_LocalScale: {x: 0.09999999, y: 0.10000001, z: 0.10000002}
+  m_LocalScale: {x: 0.1, y: 0.10000001, z: 0.10000002}
   m_Children:
   - {fileID: 251210268}
   m_Father: {fileID: 1523244976}
@@ -10610,16 +10610,35 @@ MonoBehaviour:
   fireRate: 0.2
   reloadTime: 2
   damge: 30
-  reloadBulletCount: 0
-  currentBulletCount: 0
+  reloadBulletCount: 10
+  currentBulletCount: 10
   maxBulletCount: 0
-  carrtBulletCount: 0
-  retroActionForce: 0
-  retroActionFineSightForce: 0
-  fineSightOriginPos: {x: 0, y: 0, z: 0}
-  anim: {fileID: 60605409}
+  carryBulletCount: 23
+  retroActionForce: 0.3
+  retroActionFineSightForce: 0.7
+  fineSightOriginPos: {x: 1, y: 0.2, z: -0.5}
+  anim: {fileID: 1523244978}
   muzzleFlash: {fileID: 345573558}
   fire_Sound: {fileID: 8300000, guid: c5c722e2134b30b4e9fd196e18829e71, type: 3}
+--- !u!95 &1523244978
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523244975}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9a6e50e98710784581e86bb173ba216, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1562668237
 GameObject:
   m_ObjectHideFlags: 0
@@ -10662,7 +10681,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562668237}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0ed5fb38aeb97248bb859edeccfb647, type: 3}
   m_Name: 
@@ -10680,7 +10699,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba865ce4379539141ad89d7fc94dc94f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentGun: {fileID: 1523244977}
+  currentGun: {fileID: 1523244977}
+  isFineSightMode: 0
+  originPos: {x: 0, y: 0, z: 0}
 --- !u!82 &1562668241
 AudioSource:
   m_ObjectHideFlags: 0

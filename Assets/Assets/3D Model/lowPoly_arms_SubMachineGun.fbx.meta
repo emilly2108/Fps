@@ -17,7 +17,7 @@ ModelImporter:
     second: Gun0_Reload
   - first:
       74: -2462313345951890581
-    second: Gun0_FineSightMode
+    second: Gun0_FineSight
   - first:
       74: -2886599480733615786
     second: Gun0_Weapon_out
@@ -172,11 +172,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Gun0_FineSightMode
+      name: Gun0_FineSight
       takeName: Armature|ArmatureAction
       internalID: 0
       firstFrame: 180
-      lastFrame: 190
+      lastFrame: 180
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

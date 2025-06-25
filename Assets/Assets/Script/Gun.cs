@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
     public int reloadBulletCount; //총알의 재장전 개수
     public int currentBulletCount; // 현재 탄알집에 남아있는 탄환개수
     public int maxBulletCount; // 최대소유 가능 총알 개수
-    public int carrtBulletCount; // 현재소유하고 있는 총알 개수
+    public int carryBulletCount; // 현재소유하고 있는 총알 개수
 
     public float retroActionForce; // 반동세기
     public float retroActionFineSightForce; // 정조준시의 반동 세기
