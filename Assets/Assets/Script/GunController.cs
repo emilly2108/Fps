@@ -2,29 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunControllor : MonoBehaviour
+public class GunController : MonoBehaviour
 {
 
+    // 현재 장착된 총
     [SerializeField]
     private Gun currentGun;
 
+
+    // 연사 속도 계산
     private float currentFireRate;
 
+
+    // 상태 변수
     private bool isReload = false;
+    [HideInInspector]
     public bool isFineSightMode = false;
 
-    // 본래 포지션 값.
-    [SerializeField]
+
+    // 본래 포지션 값
     private Vector3 originPos;
 
+
+    // 효과음 재생
     private AudioSource audioSource;
+
+
+    // 레이저 충돌 정보 받아옴
+    private RaycastHit hitInfo;
+
+
+    // 필요한 컴포넌트
+    [SerializeField]
+    private Camera theCam;
+
+
+    // 피격 이펙트
+    [SerializeField]
+    private GameObject hit_effect_prefab;
 
     void Start()
     {
+        originPos = Vector3.zero;
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         GunFireRateCalc();
@@ -33,13 +56,15 @@ public class GunControllor : MonoBehaviour
         TryFineSight();
     }
 
-    private void GunFireRateCalc()
+   
+    private void GunFireRateCalc() // 연사속도 재계산
     {
         if (currentFireRate > 0)
             currentFireRate -= Time.deltaTime;
     }
 
-    private void TryFire()
+    
+    private void TryFire()// 발사 시도
     {
         if (Input.GetButton("Fire1") && currentFireRate <= 0 && !isReload)
         {
@@ -47,7 +72,7 @@ public class GunControllor : MonoBehaviour
         }
     }
 
-    private void Fire()
+    private void Fire()// 발사 전 계산
     {
         if (!isReload)
         {
@@ -62,21 +87,29 @@ public class GunControllor : MonoBehaviour
 
         }
     }
-
-    private void Shoot()
+    
+    private void Shoot()// 발사 후 계산
     {
         currentGun.currentBulletCount--;
         currentFireRate = currentGun.fireRate; // 연사 속도 재계산.
         PlaySE(currentGun.fire_Sound);
         currentGun.muzzleFlash.Play();
+        Hit();
         StopAllCoroutines();
         StartCoroutine(RetroActionCoroutine());
-
-        Debug.Log("총알 발사함");
-
     }
 
-    private void TryReload()
+
+    private void Hit()
+    {
+        if (Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hitInfo, currentGun.range))
+        {
+            GameObject clone = Instantiate(hit_effect_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+            Destroy(clone, 2f);
+        }
+    }
+
+    private void TryReload()// 재장전 시도
     {
         if (Input.GetKeyDown(KeyCode.R) && !isReload && currentGun.currentBulletCount < currentGun.reloadBulletCount)
         {
@@ -85,7 +118,8 @@ public class GunControllor : MonoBehaviour
         }
     }
 
-    IEnumerator ReloadCoroutine()
+
+    IEnumerator ReloadCoroutine()// 재장전
     {
         if (currentGun.carryBulletCount > 0)
         {
@@ -119,7 +153,7 @@ public class GunControllor : MonoBehaviour
         }
     }
 
-    private void TryFineSight()
+    private void TryFineSight()// 정조준 시도
     {
         if (Input.GetButtonDown("Fire2") && !isReload)
         {
@@ -127,13 +161,14 @@ public class GunControllor : MonoBehaviour
         }
     }
 
-    public void CancelFineSight()
+
+    public void CancelFineSight()// 정조준 취소
     {
         if (isFineSightMode)
             FineSight();
     }
 
-    private void FineSight()
+    private void FineSight()// 정조준 로직 가동
     {
         isFineSightMode = !isFineSightMode;
         currentGun.anim.SetBool("FineSightMode", isFineSightMode);
@@ -151,8 +186,7 @@ public class GunControllor : MonoBehaviour
 
     }
 
-
-    IEnumerator FineSightActivateCoroutine()
+    IEnumerator FineSightActivateCoroutine()// 정조준 활성화
     {
         while (currentGun.transform.localPosition != currentGun.fineSightOriginPos)
         {
@@ -161,7 +195,7 @@ public class GunControllor : MonoBehaviour
         }
     }
 
-    IEnumerator FineSightDeactivateCoroutine()
+    IEnumerator FineSightDeactivateCoroutine() // 정조준 비활성화
     {
         while (currentGun.transform.localPosition != originPos)
         {
@@ -170,7 +204,8 @@ public class GunControllor : MonoBehaviour
         }
     }
 
-    IEnumerator RetroActionCoroutine()
+
+    IEnumerator RetroActionCoroutine()// 반동 코루틴
     {
         Vector3 recoilBack = new Vector3(currentGun.retroActionForce, originPos.y, originPos.z);
         Vector3 retroActionRecoilBack = new Vector3(currentGun.retroActionFineSightForce, currentGun.fineSightOriginPos.y, currentGun.fineSightOriginPos.z);
@@ -215,6 +250,8 @@ public class GunControllor : MonoBehaviour
 
     }
 
+
+    // 사운드 재생
     private void PlaySE(AudioClip _clip)
     {
         audioSource.clip = _clip;
