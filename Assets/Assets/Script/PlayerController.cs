@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
 
     private void CharacterRotation() // 좌우 카메라 회전
     {
-        float _yRotation = Input.GetAxisRaw("MouseX");
+        float _yRotation = Input.GetAxisRaw("Mouse X");
         Vector3 _characterRotationY = new Vector3(0f, _yRotation, 0f) * lookSensitivity;
         myRigid.MoveRotation(myRigid.rotation * Quaternion.Euler(_characterRotationY));
     }
