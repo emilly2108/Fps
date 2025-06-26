@@ -7,7 +7,7 @@ public class HandController : MonoBehaviour
     [SerializeField]
     private Hand currentHand;   //현재장착된 Hand형 타입 무기
 
-    //공격 중??
+    //공격 중?
     private bool isAttack = false;
     private bool isSwing = false;
 
