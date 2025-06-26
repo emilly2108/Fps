@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+       
         IsGround();
         TryJump();
         TryRun();
@@ -105,10 +106,11 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator CrouchCoroutine()//부드러운 앉기 동작
     {
+
         float _posY = theCamera.transform.localPosition.y;
         int count = 0;
 
-        while(_posY != applyCrouchPosY)
+        while (_posY != applyCrouchPosY)
         {
             count++;
             _posY = Mathf.Lerp(_posY, applyCrouchPosY, 0.3f);
@@ -120,7 +122,7 @@ public class PlayerController : MonoBehaviour
         theCamera.transform.localPosition = new Vector3(0, applyCrouchPosY, 0f);
     }
 
-    
+
 
     private void IsGround()//지면체크
     {
@@ -186,8 +188,8 @@ public class PlayerController : MonoBehaviour
 
         myRigid.MovePosition(transform.position + _velocity * Time.deltaTime);
     }
-    
-    private void MoveCheck()// 움직임 체크
+
+    private void MoveCheck()
     {
         if (!isRun && !isCrouch && isGround)
         {
