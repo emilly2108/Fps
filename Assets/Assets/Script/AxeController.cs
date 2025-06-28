@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandController : CloseWeaponController
+public class AxeController : CloseWeaponController
 {
     // 활성화 여부
     public static bool isActivate = false;
