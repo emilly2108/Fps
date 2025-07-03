@@ -13,7 +13,7 @@ public class PickaxeController : CloseWeaponController
         WeaponManager.currentWeapon = currentCloseWeapon.GetComponent<Transform>();
         WeaponManager.currentWeaponAnim = currentCloseWeapon.anim;
     }
- 
+
     void Update()
     {
         if (isActivate)
@@ -26,6 +26,10 @@ public class PickaxeController : CloseWeaponController
         {
             if (CheckObject())
             {
+                if (hitInfo.transform.tag == "Rock")
+                {
+                    hitInfo.transform.GetComponent<Rock>().Mining();
+                }
                 isSwing = false;
                 Debug.Log(hitInfo.transform.name);
             }
