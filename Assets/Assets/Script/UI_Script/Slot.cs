@@ -7,25 +7,27 @@ using UnityEngine.EventSystems;
 public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
 
-    public Item item; // 획득한 아이템
-    public int itemCount; // 획득한 아이템의 개수
-    public Image itemImage; // 아이템의 이미지
+    public Item item; // 획득한 아이템.
+    public int itemCount; // 획득한 아이템의 개수.
+    public Image itemImage; // 아이템의 이미지.
 
 
-    // 필요한 컴포넌트
+    // 필요한 컴포넌트.
     [SerializeField]
     private Text text_Count;
     [SerializeField]
     private GameObject go_CountImage;
 
-    private WeaponManager theWeaponManager;
+    private ItemEffectDatabase theItemEffectDatabase;
+    private Rect baseRect;
 
     void Start()
     {
-        theWeaponManager = FindObjectOfType<WeaponManager>();
+        theItemEffectDatabase = FindObjectOfType<ItemEffectDatabase>();
+        baseRect = transform.parent.parent.GetComponent<RectTransform>().rect;
     }
 
-    // 이미지의 투명도 조절
+    // 이미지의 투명도 조절.
     private void SetColor(float _alpha)
     {
         Color color = itemImage.color;
@@ -54,7 +56,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
         SetColor(1);
     }
 
-    // 아이템 개수 조정
+    // 아이템 개수 조정.
     public void SetSlotCount(int _count)
     {
         itemCount += _count;
@@ -64,7 +66,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
             ClearSlot();
     }
 
-    // 슬롯 초기화
+    // 슬롯 초기화.
     private void ClearSlot()
     {
         item = null;
@@ -82,15 +84,10 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
         {
             if (item != null)
             {
-                if (item.itemType == Item.ItemType.Equipment)
-                {
-                    StartCoroutine(theWeaponManager.ChangeWeaponCoroutine(item.weaponType, item.itemName));
-                }
-                else
-                {
-                    Debug.Log(item.itemName + " 을 사용했습니다");
+                theItemEffectDatabase.UseItem(item);
+
+                if (item.itemType == Item.ItemType.Used)
                     SetSlotCount(-1);
-                }
             }
         }
     }
@@ -139,4 +136,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
         else
             DragSlot.instance.dragSlot.ClearSlot();
     }
+
+
+
 }
