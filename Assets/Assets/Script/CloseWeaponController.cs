@@ -11,45 +11,57 @@ public abstract class CloseWeaponController : MonoBehaviour
     [SerializeField]
     protected CloseWeapon currentCloseWeapon;
 
-    // 공격중?
+    // 공격중??
     protected bool isAttack = false;
     protected bool isSwing = false;
 
     protected RaycastHit hitInfo;
 
 
+    //필요한 컴포넌트
+    private PlayerController thePlayerController;
+
+    void Start()
+    {
+        thePlayerController = FindObjectOfType<PlayerController>();
+    }
+
     protected void TryAttack()
     {
-        if (Input.GetButton("Fire1"))
+        if (!Inventory.inventoryActivated)
         {
-            if (!isAttack)
+            if (Input.GetButton("Fire1"))
             {
-                StartCoroutine(AttackCoroutine());
+                if (!isAttack)
+                {
+                    StartCoroutine(AttackCoroutine("Attack", currentCloseWeapon.attackDelayA, currentCloseWeapon.attackDelayB, currentCloseWeapon.attackDelay));
+                }
             }
         }
     }
 
-    protected IEnumerator AttackCoroutine()
+    protected IEnumerator AttackCoroutine(string swingType, float _delayA, float _delayB, float _delayC)
     {
         isAttack = true;
-        currentCloseWeapon.anim.SetTrigger("Attack");
+        currentCloseWeapon.anim.SetTrigger(swingType);
 
-        yield return new WaitForSeconds(currentCloseWeapon.attackDelayA);
+        yield return new WaitForSeconds(_delayA);
         isSwing = true;
 
         StartCoroutine(HitCoroutine());
 
-        yield return new WaitForSeconds(currentCloseWeapon.attackDelayB);
+        yield return new WaitForSeconds(_delayB);
         isSwing = false;
 
 
-        yield return new WaitForSeconds(currentCloseWeapon.attackDelay - currentCloseWeapon.attackDelayA - currentCloseWeapon.attackDelayB);
+        yield return new WaitForSeconds(_delayC - _delayA - _delayB);
         isAttack = false;
     }
 
 
     // 미완성 = 추상 코루틴
     protected abstract IEnumerator HitCoroutine();
+
 
     protected bool CheckObject()
     {
@@ -60,7 +72,7 @@ public abstract class CloseWeaponController : MonoBehaviour
         return false;
     }
 
-    // 완성 함수이지만, 추가 편집한 함수.
+    // 완성 함수이지만, 추가 편집한 함수
     public virtual void CloseWeaponChange(CloseWeapon _closeWeapon)
     {
         if (WeaponManager.currentWeapon != null)

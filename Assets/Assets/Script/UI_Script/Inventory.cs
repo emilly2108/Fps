@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+
     public static bool inventoryActivated = false;
+
 
     // ÇÊ¿äÇÑ ÄÄÆ÷³ÍÆ®
     [SerializeField]
@@ -12,8 +14,9 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private GameObject go_SlotsParent;
 
-    // ½½·Ôµé.
+    // ½½·Ôµé
     private Slot[] slots;
+
 
     // Use this for initialization
     void Start()
@@ -21,7 +24,6 @@ public class Inventory : MonoBehaviour
         slots = go_SlotsParent.GetComponentsInChildren<Slot>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         TryOpenInventory();

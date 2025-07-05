@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
         theCrosshair = FindObjectOfType<Crosshair>();
         theStatusController = FindObjectOfType<StatusController>();
 
-        // 초기화.
+        // 초기화
         applySpeed = walkSpeed;
         originPosY = theCamera.transform.localPosition.y;
         applyCrouchPosY = originPosY;
@@ -81,9 +81,11 @@ public class PlayerController : MonoBehaviour
         TryCrouch();
         Move();
         MoveCheck();
-        CameraRotation();
-        CharacterRotation();
-
+        if (!Inventory.inventoryActivated)
+        {
+            CameraRotation();
+            CharacterRotation();
+        }
     }
 
     // 앉기 시도
@@ -118,7 +120,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // 부드러운 동작 실행.
+    // 부드러운 동작 실행
     IEnumerator CrouchCoroutine()
     {
 
@@ -138,7 +140,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // 지면 체크.
+    // 지면 체크
     private void IsGround()
     {
         isGround = Physics.Raycast(transform.position, Vector3.down, capsuleCollider.bounds.extents.y + 0.1f);
@@ -160,7 +162,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
 
-        // 앉은 상태에서 점프시 앉은 상태 해제.
+        // 앉은 상태에서 점프시 앉은 상태 해제
         if (isCrouch)
             Crouch();
         theStatusController.DecreaseStamina(100);
@@ -240,11 +242,12 @@ public class PlayerController : MonoBehaviour
     // 좌우 캐릭터 회전
     private void CharacterRotation()
     {
-
         float _yRotation = Input.GetAxisRaw("Mouse X");
         Vector3 _characterRotationY = new Vector3(0f, _yRotation, 0f) * lookSensitivity;
         myRigid.MoveRotation(myRigid.rotation * Quaternion.Euler(_characterRotationY));
     }
+
+
 
     // 상하 카메라 회전
     private void CameraRotation()
