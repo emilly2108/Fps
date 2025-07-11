@@ -4,15 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
 
-    public Item item; // 획득한 아이템.
-    public int itemCount; // 획득한 아이템의 개수.
-    public Image itemImage; // 아이템의 이미지.
+
+    public Item item; // 획득한 아이템
+    public int itemCount; // 획득한 아이템의 개수
+    public Image itemImage; // 아이템의 이미지
 
 
-    // 필요한 컴포넌트.
+    // 필요한 컴포넌트
     [SerializeField]
     private Text text_Count;
     [SerializeField]
@@ -20,6 +21,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
 
     private ItemEffectDatabase theItemEffectDatabase;
     private Rect baseRect;
+    private SlotToolTip theSlot;
 
     void Start()
     {
@@ -27,7 +29,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
         baseRect = transform.parent.parent.GetComponent<RectTransform>().rect;
     }
 
-    // 이미지의 투명도 조절.
+    // 이미지의 투명도 조절
     private void SetColor(float _alpha)
     {
         Color color = itemImage.color;
@@ -56,7 +58,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
         SetColor(1);
     }
 
-    // 아이템 개수 조정.
+    // 아이템 개수 조정
     public void SetSlotCount(int _count)
     {
         itemCount += _count;
@@ -66,7 +68,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
             ClearSlot();
     }
 
-    // 슬롯 초기화.
+    // 슬롯 초기화
     private void ClearSlot()
     {
         item = null;
@@ -137,6 +139,18 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
             DragSlot.instance.dragSlot.ClearSlot();
     }
 
+    // 마우스가 슬롯에 들어갈 때 발동
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (item != null)
+            theItemEffectDatabase.ShowToolTop(item, transform.position);
+    }
+
+    // 슬롯에서 빠져나갈 때 발동
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        theItemEffectDatabase.HideToolTip();
+    }
 
 
 }
