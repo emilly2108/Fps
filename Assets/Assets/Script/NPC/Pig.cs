@@ -54,6 +54,7 @@ public class Pig : MonoBehaviour
         }
     }
 
+
     private void Move()
     {
         if (isWalking || isRunning)
@@ -130,7 +131,7 @@ public class Pig : MonoBehaviour
         Debug.Log("걷기");
     }
 
-    private void Run(Vector3 _targetPos)
+    public void Run(Vector3 _targetPos)
     {
         direction = Quaternion.LookRotation(transform.position - _targetPos).eulerAngles;
         currentTime = runTime;
@@ -169,7 +170,7 @@ public class Pig : MonoBehaviour
 
     private void RandomSound()
     {
-        int _random = Random.Range(0, 3); // 일상 사운드 3개.
+        int _random = Random.Range(0, 3); // 일상 사운드 3개
         PlaySE(sound_pig_Normal[_random]);
     }
 

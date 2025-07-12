@@ -6519,7 +6519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 120cbf6cb35503042b3763e4f50f1b6e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: -1.14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 120cbf6cb35503042b3763e4f50f1b6e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12369,6 +12369,7 @@ GameObject:
   - component: {fileID: 421922401}
   - component: {fileID: 421922400}
   - component: {fileID: 421922404}
+  - component: {fileID: 421922405}
   m_Layer: 0
   m_Name: Pig
   m_TagString: NPC
@@ -12431,7 +12432,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6426389, y: 0.3409438, z: 0.2465972}
+  m_Size: {x: 0.6426389, y: 2, z: 0.2465972}
   m_Center: {x: -0.01464763, y: 0.1762828, z: 0.002998367}
 --- !u!4 &421922403
 Transform:
@@ -12440,14 +12441,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421922399}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 507.06912, y: 4.233646, z: 498.39093}
+  m_LocalRotation: {x: 0, y: -0.70710677, z: 0, w: 0.70710677}
+  m_LocalPosition: {x: 502.99, y: 5.05, z: 500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2055722957}
   m_Father: {fileID: 0}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &421922404
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12553,6 +12554,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &421922405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421922399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dee7a417b78c624183480b062082a8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewAngle: 130
+  viewDistance: 10
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &450076998 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3237888110679111982, guid: a14eca5439bbbd24a9d6e56b85638d63, type: 3}
@@ -17593,7 +17611,7 @@ GameObject:
   - component: {fileID: 1848280042}
   - component: {fileID: 1848280041}
   - component: {fileID: 1848280040}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
