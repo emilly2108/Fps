@@ -12375,7 +12375,7 @@ GameObject:
   - component: {fileID: 421922405}
   m_Layer: 0
   m_Name: Pig
-  m_TagString: NPC
+  m_TagString: WeakAnimal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12396,18 +12396,19 @@ MonoBehaviour:
   hp: 2
   walkSpeed: 2
   runSpeed: 4
+  turningSpeed: 0
   walkTime: 5
   waitTime: 4
   runTime: 3
   anim: {fileID: 2055722956}
   rigid: {fileID: 421922401}
   boxCol: {fileID: 421922402}
-  sound_pig_Normal:
+  sound_Normal:
   - {fileID: 8300000, guid: 015341d574200934787a29c4ab2cd0db, type: 3}
   - {fileID: 8300000, guid: 061e190fe5156b14eb49771bde765752, type: 3}
   - {fileID: 8300000, guid: f76a0163d4f087a4895f2e21470520a8, type: 3}
-  sound_pig_Hurt: {fileID: 8300000, guid: 1869dc5d47b889a4899fc3cfaf33a5ff, type: 3}
-  sound_pig_Dead: {fileID: 8300000, guid: f2af1c5ac21c08249a0ec73544b9828b, type: 3}
+  sound_Hurt: {fileID: 8300000, guid: 1869dc5d47b889a4899fc3cfaf33a5ff, type: 3}
+  sound_Dead: {fileID: 8300000, guid: f2af1c5ac21c08249a0ec73544b9828b, type: 3}
 --- !u!54 &421922401
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12444,7 +12445,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421922399}
-  m_LocalRotation: {x: 0, y: -0.70710677, z: 0, w: 0.70710677}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 502.99, y: 5.05, z: 500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

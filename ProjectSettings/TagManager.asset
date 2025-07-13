@@ -7,6 +7,8 @@ TagManager:
   - Rock
   - Item
   - NPC
+  - WeakAnimal
+  - StrongAniaml
   layers:
   - Default
   - TransparentFX
