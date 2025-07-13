@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCloseWeapon: {fileID: 744093519}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!95 &12489226
 Animator:
   serializedVersion: 3
@@ -16771,13 +16774,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1562668238}
-  - component: {fileID: 1562668239}
-  - component: {fileID: 1562668240}
-  - component: {fileID: 1562668241}
   - component: {fileID: 1562668242}
   - component: {fileID: 1562668243}
+  - component: {fileID: 1562668240}
+  - component: {fileID: 1562668239}
   - component: {fileID: 1562668245}
   - component: {fileID: 1562668244}
+  - component: {fileID: 1562668241}
   m_Layer: 2
   m_Name: Holder
   m_TagString: Untagged
@@ -16816,6 +16819,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCloseWeapon: {fileID: 60605410}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 243
 --- !u!114 &1562668240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16830,6 +16836,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGun: {fileID: 1523244977}
   isFineSightMode: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 243
   theCam: {fileID: 963194227}
   hit_effect_prefab: {fileID: 1225648898847756169, guid: b3c3d154c3bc0524285962a88bca77a3, type: 3}
 --- !u!82 &1562668241
@@ -16984,6 +16993,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCloseWeapon: {fileID: 744093519}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 243
 --- !u!114 &1562668245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16997,6 +17009,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCloseWeapon: {fileID: 12489227}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 243
 --- !u!1 &1567611563
 GameObject:
   m_ObjectHideFlags: 0
